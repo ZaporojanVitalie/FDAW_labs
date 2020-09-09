@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="orderCtrl">
+
+<ul>
+<li ng-repeat="x in students | orderBy : 'mark'">
+    {{x.name + ", " + x.mark}}
+</li>
+</ul>
+
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('orderCtrl', function($scope) {
+    $scope.students = [
+        {"name" : "Student1" ,"mark" : 5},
+        {"name" : "Student2", "mark" : 6},
+        {"name" : "Student3", "mark" : 7},
+        {"name" : "Student4", "mark" : 2},
+        {"name" : "Student5", "mark" : 5},
+        {"name" : "Student6", "mark" : 10},
+        {"name" : "Student7", "mark" : 7}
+    ];
+});
+</script>
+
+
+</body>
+</html>
