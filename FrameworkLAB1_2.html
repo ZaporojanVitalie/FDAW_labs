@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body align="Center">
+
+<div ng-app="" ng-init="cicle=[1,2,3,4,5,6,7,8,9]">
+Input your number: <input type="number" ng-model="number">
+  <p>Tablica umnojeniea:</p>
+<table border="2" cellspacing="0" cellpadding="14" align="center">
+<tr ng-repeat="x in cicle">
+<td > {{number}} * {{x}} </td> 
+<td > {{ number * x }} </td>
+</tr>
+</table>
+</div>
+
+</body>
+</html>
