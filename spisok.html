@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+<table cellspacing="0" border="1" width="400" style="text-align : center">
+<tr>
+<td> Familia </td> <td> Imea </td> <td> MARK </td>
+</tr>
+<tr ng-repeat="x in students">
+<td> {{ x.name }} </td>
+<td>{{ x.surname }} </td>
+<td>{{ x.mark }} </td>
+</tr>
+</table>
+
+<br><br><br><br><br>
+
+<p>Select a Student:</p>
+
+<select ng-model="SelectStud" ng-options="x.name for x in students">
+</select>
+<br>
+<h2> You selected: {{SelectStud.surname + " " + SelectStud.name}} </h2>
+<br>
+His mark is {{SelectStud.mark }}
+
+</div>
+
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.students = [
+        {"name" : "Jack", "surname" : "Doyle" ,"mark" : 5},
+        {"name" : "Sam", "surname" : "Smith" , "mark" : 6},
+        {"name" : "Brian", "surname" : "O'Connor" , "mark" : 7},
+        {"name" : "Leonardo", "surname" : "Da'Vinchi" , "mark" : 10},
+        {"name" : "Sarah", "surname" : "Connor" , "mark" : 5},
+        {"name" : "Zaporojan", "surname" : "Vitalie" , "mark" : 2},
+        {"name" : "Klark", "surname" : "Kent" , "mark" : 7}
+    ];
+});
+</script>
+
+
+</body>
+</html>
