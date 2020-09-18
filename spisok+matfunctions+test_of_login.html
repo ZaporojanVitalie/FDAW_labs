@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+<div ng-app="myApp" ng-controller="myCtrl" ng-init="hd = 'true'">
+<h2> List of students + search </h2>
+<list>
+<li ng-repeat="x in students"> {{x.surname + "   " + x.name + "   " + x.mark}}</li>
+</list>
+<br>
+Insert the name of the student <input type="text" ng-model="search">
+<br><br>
+<button ng-click="hd = !hd" >OK</button>
+<br>
+<p ng-repeat="x in students | filter : search" ng-hide="hd"> Your student is {{ x.surname + "  " + x.name + " and his mark is " + x.mark }} </p>
+<br><br>
+<h2> Ordered table + Select </h2> 
+<table cellspacing="0" border="1" width="400" style="text-align : center">
+<tr>
+<td> Familia </td> <td> Imea </td> <td> MARK </td>
+</tr>
+<tr ng-repeat="x in students | orderBy: '-mark'">
+<td> {{ x.name }} </td>
+<td>{{ x.surname }} </td>
+<td>{{ x.mark }} </td>
+</tr>
+</table>
+
+<br><br><br><br><br>
+
+<p>Select a Student:</p>
+
+<select ng-model="SelectStud" ng-options="x.name for x in students">
+</select>
+<br>
+<h4> You selected: {{SelectStud.surname + " " + SelectStud.name}} </h4>
+His mark is {{SelectStud.mark }}
+
+<br><br><br><br>
+<h2> Vozvedenie v kvadrat </h2>
+Insert the number <br><br>
+Number a:<input ng-model="a1">
+<br><br>
+<button ng-click="sqr = a1 * a1" ng-init="count=0">COUNT</button>
+<br><br>
+The result is {{sqr}}
+<br>
+<h2> Umnojenie a na b </h2>
+Insert the numbers <br><br>
+Number a:<input ng-model="a2">
+<br><br>
+Number b:<input ng-model="b2">
+<br><br>
+<button ng-click="count = a2 * b2" ng-init="count=0">COUNT</button>
+<br><br>
+The result is {{count}}
+<br>
+<h2> Delenie on 0 </h2>
+Insert the numbers <br><br>
+Number a:<input ng-model="a">
+<br><br>
+Number b:<input ng-model="b">
+<br><br>
+<button ng-click="del = a / b; hide = !hide" >COUNT</button>
+<br><br>
+<div ng-show="b != 0">
+The rezult is &nbsp {{del}} 
+</div>
+<div ng-show="b == 0">
+NE deli na 0!!!
+</div> 
+<br><br><br><br>
+<h2> Test version of login with NG-HIDE </h2>
+Inser the data (Correct is admin + 12345): 
+<br><br>
+Username: <input type="text" ng-model="username">
+<br><br>
+Password: <input type="password" ng-model="password">
+<div ng-init="user1='admin'; pass1='12345'">
+<div ng-hide="username != user1">
+<div ng-hide="password != pass1">
+<h1>Welcome {{username}} </h1>
+</div>
+</div>
+</div>
+<br><br><br><br>
+</div>
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.students = [
+        {"name" : "Jack", "surname" : "Doyle" ,"mark" : 5},
+        {"name" : "Sam", "surname" : "Smith" , "mark" : 6},
+        {"name" : "Brian", "surname" : "O'Connor" , "mark" : 7},
+        {"name" : "Leonardo", "surname" : "Da'Vinchi" , "mark" : 10},
+        {"name" : "Sarah", "surname" : "Connor" , "mark" : 5},
+        {"name" : "Zaporojan", "surname" : "Vitalie" , "mark" : 2},
+        {"name" : "Klark", "surname" : "Kent" , "mark" : 7}
+    ];
+});
+</script>
+
+
+</body>
+</html>
