@@ -2,13 +2,24 @@
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <body>
+<div ng-app="myApp" ng-controller="myCtrl" ng-init="hd = 'true'">
 
-<div ng-app="myApp" ng-controller="myCtrl">
+<list>
+<li ng-repeat="x in students"> {{x.surname + "   " + x.name + "   " + x.mark}}</li>
+</list>
+<br>
+Insert the name of the student <input type="text" ng-model="search">
+<br><br>
+<button ng-click="hd = !hd" >OK</button>
+<br>
+<p ng-repeat="x in students | filter : search" ng-hide="hd"> Your student is {{ x.surname + "  " + x.name + " and his mark is " + x.mark }} </p>
+<br><br>
+
 <table cellspacing="0" border="1" width="400" style="text-align : center">
 <tr>
 <td> Familia </td> <td> Imea </td> <td> MARK </td>
 </tr>
-<tr ng-repeat="x in students">
+<tr ng-repeat="x in students | orderBy: '-mark'">
 <td> {{ x.name }} </td>
 <td>{{ x.surname }} </td>
 <td>{{ x.mark }} </td>
