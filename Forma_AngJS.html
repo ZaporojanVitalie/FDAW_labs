@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+<div align="center" bgcolor="lightgray">
+<h2> EMPLOYEE </h2>
+<div ng-app="myApp" ng-controller="myCtrl" ng-init="hide='true';hide2='true'">
+Insert Your LastName: <input type="text" ng-model="lname"><br><br>
+Insert Your FirstName: <input type="text" ng-model="fname"><br><br>
+Insert Your Date of Birth:<input type="date" ng-model="dbirth"><br><br><br>
+
+Select Faculty: <br> 
+<input type="radio" name="faculty" value="Chemistry" ng-model="fac">Chemistry<br>
+<input type="radio" name="faculty" value="Mathematics" ng-model="fac">Mathematics<br>
+<input type="radio" name="faculty" value="Informatics" ng-model="fac">Informatics<br>
+<input type="radio" name="faculty" value="Physics" ng-model="fac">Physics<br>
+<br><br>
+Select Subject:<br>
+<select ng-model="selectedsubj" ng-options="x for x in subject">
+</select>
+<br><Br>
+What salary are you expecting<br><input type="number" ng-model="salary">
+<div ng-show="salary < 3000">
+You are underestimating yourself
+</div>
+<div ng-show="salary > 10000">
+You want too much
+</div>
+<br><br><br>
+<input type="button" value="Agreed" ng-disabled="salary<3000||salary>10000" ng-click="MyFunc()"> 
+&nbsp&nbsp&nbsp
+<input type="button" value="Deny" ng-click="MyFunc2()">
+<br><br>
+<div ng-hide="hide">
+Agreed employee: {{lname + "  " + fname}}<br>
+Date of birth: {{dbirth | date : 'd' + " " + 'MMMM' + " " + 'yyyy'}}<br>
+Faculty: {{fac}} <br>
+Subject: {{selectedsubj}}<br>
+Estimating salary: {{salary}} <br>
+</div>
+<div ng-hide="hide2">
+<h2> DENIED </h2>
+</div>
+</div>
+</div>
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.subject = ["OrganicChemistry", "Algebra", "Programing","Phisics"];
+    $scope.MyFunc = function(){
+    $scope.hide = !$scope.hide; 
+    if($scope.hide2 == false)
+     $scope.hide2 = !$scope.hide2;
+    }
+     $scope.MyFunc2 = function(){
+    $scope.hide2 = !$scope.hide2; 
+    if($scope.hide == false)
+     $scope.hide = !$scope.hide;
+    }
+});
+</script>
+
+</body>
+</html>
